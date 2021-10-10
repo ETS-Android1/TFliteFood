@@ -10,15 +10,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_main);
-
-        Handler handler=new Handler();
-        handler.postDelayed(new Runnable(){
-            @Override
-            public void run() {
-                Intent Intent = new Intent(getApplicationContext (), BMICalculator.class);
-                startActivity(Intent);
-                finish();
-            }
-        },1500);
+        Intent Intent = new Intent(getApplicationContext (), BMICalculator.class);
+        startActivity(Intent);
+        finish();
     }
 }

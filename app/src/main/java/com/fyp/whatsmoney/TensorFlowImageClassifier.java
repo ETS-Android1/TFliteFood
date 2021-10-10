@@ -11,6 +11,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.MappedByteBuffer;
@@ -55,16 +56,30 @@ public class TensorFlowImageClassifier implements Classifier {
         return classifier;
     }
 
+    public static Bitmap getBitmap(Buffer buffer, int width, int height) {
+        buffer.rewind();
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        try {
+            bitmap.copyPixelsFromBuffer(buffer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bitmap;
+    }
+
     @Override
     public List<Recognition> recognizeImage(Bitmap bitmap) {
 
         ByteBuffer byteBuffer = convertBitmapToByteBuffer(bitmap);
-        if(quant){
+
+        Camera.ivImage.setImageBitmap(getBitmap(byteBuffer, bitmap.getWidth(), bitmap.getHeight()));
+
+        if (quant) {
             byte[][] result = new byte[1][labelList.size()];
             interpreter.run(byteBuffer, result);
             return getSortedResultByte(result);
         } else {
-            float [][] result = new float [1][labelList.size()];
+            float[][] result = new float[1][labelList.size()];
             interpreter.run(byteBuffer, result);
             return getSortedResultFloat(result);
         }
@@ -100,7 +115,7 @@ public class TensorFlowImageClassifier implements Classifier {
     private ByteBuffer convertBitmapToByteBuffer(Bitmap bitmap) {
         ByteBuffer byteBuffer;
 
-        if(quant) {
+        if (quant) {
             byteBuffer = ByteBuffer.allocateDirect(BATCH_SIZE * inputSize * inputSize * PIXEL_SIZE);
         } else {
             byteBuffer = ByteBuffer.allocateDirect(4 * BATCH_SIZE * inputSize * inputSize * PIXEL_SIZE);
@@ -108,19 +123,24 @@ public class TensorFlowImageClassifier implements Classifier {
 
         byteBuffer.order(ByteOrder.nativeOrder());
         int[] intValues = new int[inputSize * inputSize];
-        bitmap.getPixels(intValues, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
+        try {
+            bitmap.getPixels(intValues, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         int pixel = 0;
         for (int i = 0; i < inputSize; ++i) {
             for (int j = 0; j < inputSize; ++j) {
                 final int val = intValues[pixel++];
-                if(quant){
+                if (quant) {
                     byteBuffer.put((byte) ((val >> 16) & 0xFF));
                     byteBuffer.put((byte) ((val >> 8) & 0xFF));
                     byteBuffer.put((byte) (val & 0xFF));
                 } else {
-                    byteBuffer.putFloat((((val >> 16) & 0xFF)-IMAGE_MEAN)/IMAGE_STD);
-                    byteBuffer.putFloat((((val >> 8) & 0xFF)-IMAGE_MEAN)/IMAGE_STD);
-                    byteBuffer.putFloat((((val) & 0xFF)-IMAGE_MEAN)/IMAGE_STD);
+                    byteBuffer.putFloat((((val >> 16) & 0xFF) - IMAGE_MEAN) / IMAGE_STD);
+                    byteBuffer.putFloat((((val >> 8) & 0xFF) - IMAGE_MEAN) / IMAGE_STD);
+                    byteBuffer.putFloat((((val) & 0xFF) - IMAGE_MEAN) / IMAGE_STD);
                 }
 
             }

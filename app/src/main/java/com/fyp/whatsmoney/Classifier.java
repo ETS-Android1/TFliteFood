@@ -10,6 +10,10 @@ import java.util.List;
 
 public interface Classifier {
 
+    List<Recognition> recognizeImage(Bitmap bitmap);
+
+    void close();
+
     class Recognition {
         /**
          * A unique identifier for what has been recognized. Specific to the class, not the instance of
@@ -74,9 +78,4 @@ public interface Classifier {
             //return labelResult.trim ();
         }
     }
-
-
-    List<Recognition> recognizeImage(Bitmap bitmap);
-
-    void close();
 }

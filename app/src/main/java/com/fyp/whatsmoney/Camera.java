@@ -9,6 +9,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.wonderkiln.camerakit.CameraKitError;
@@ -28,7 +29,8 @@ public class Camera extends AppCompatActivity {
     private static final String LABEL_PATH = "labels.txt";
 
     private static final boolean QUANT = false;
-    private static final int INPUT_SIZE = 200;
+    private static final int INPUT_SIZE = 224;
+    public static ImageView ivImage;
     Bitmap bitmap;
     boolean doubleBackToExitPressedOnce = false;
     private Classifier classifier;
@@ -48,6 +50,8 @@ public class Camera extends AppCompatActivity {
         micButton = findViewById(R.id.micButton);
         //TextToSpeech Initializer
 
+        ivImage = findViewById(R.id.iv_prev);
+
         cameraView.addCameraKitListener(new CameraKitEventListener() {
             @Override
             public void onEvent(CameraKitEvent cameraKitEvent) {
@@ -64,9 +68,14 @@ public class Camera extends AppCompatActivity {
 
                 bitmap = cameraKitImage.getBitmap();
                 bitmap = Bitmap.createScaledBitmap(bitmap, INPUT_SIZE, INPUT_SIZE, false);
+
+//                ivImage.setVisibility(View.VISIBLE);
+//                ivImage.setImageBitmap(bitmap);
+
+
                 final List<Classifier.Recognition> results = classifier.recognizeImage(bitmap);
 
-                Intent produceResult = new Intent(getApplicationContext(), resultVoiceOver.class);
+                Intent produceResult = new Intent(getApplicationContext(), Result.class);
 
                 produceResult.putExtra("result", results.toString());
                 produceResult.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -134,8 +143,16 @@ public class Camera extends AppCompatActivity {
 
         if (requestCode == GalleryUtils.GALLERY_REQUEST_CODE) {
             bitmap = GalleryUtils.getBitmap(Camera.this, resultCode, data);
+
+//            if (true) {
+//                ivImage.setVisibility(View.VISIBLE);
+//                ivImage.setImageBitmap(bitmap);
+//
+//                return;
+//            }
+
             final List<Classifier.Recognition> results = classifier.recognizeImage(bitmap);
-            Intent produceResult = new Intent(getApplicationContext(), resultVoiceOver.class);
+            Intent produceResult = new Intent(getApplicationContext(), Result.class);
             produceResult.putExtra("result", results.toString());
             produceResult.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(produceResult);

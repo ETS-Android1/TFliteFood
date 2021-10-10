@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndroidTensorFlowMachineLearningExample</string>
+    <string name="app_name">Bisma FYP</string>
     <string name="toggle_camera">Toggle Camera</string>
     <string name="detect_object">Detect Object</string>
     <string name="feet">Height (cm)</string>
@@ -9,4 +9,7 @@
     <string name="calculate">Calculate</string>
     <string name="next">Next</string>
     <string name="no_results">No Results</string>
+    <string name="bmi_calculator">BMI Calculator</string>
+    <string name="your_weight_in_kg">Your weight in kg</string>
+    <string name="suggestion">Suggestion</string>
 </resources>
