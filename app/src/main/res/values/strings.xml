@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">AndroidTensorFlowMachineLearningExample</string>
+    <string name="toggle_camera">Toggle Camera</string>
+    <string name="detect_object">Detect Object</string>
+    <string name="feet">Height (cm)</string>
+    <string name="inches">Inches</string>
+    <string name="weight_pounds">Weight (Pounds)</string>
+    <string name="result">Result</string>
+    <string name="calculate">Calculate</string>
+    <string name="next">Next</string>
+    <string name="no_results">No Results</string>
+</resources>
