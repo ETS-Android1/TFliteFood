@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,7 +17,7 @@ public class BMICalculator extends AppCompatActivity {
     TextView tvResult;
     EditText etHeight;
     EditText etWeight;
-
+    ImageView iv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class BMICalculator extends AppCompatActivity {
         tvResult = findViewById(R.id.tv_result);
         etHeight = findViewById(R.id.editText);
         etWeight = findViewById(R.id.et_weight);
+        iv = findViewById(R.id.back);
 
     }
 
@@ -44,5 +46,7 @@ public class BMICalculator extends AppCompatActivity {
         height = Double.parseDouble(etHeight.getText().toString());
         Utils.bmi = (weight / height / height) * 10000;
         tvResult.setText(String.valueOf(Utils.bmi));
+        iv.animate().alpha(0.8f).rotation(405).setDuration(2000);
+
     }
 }
