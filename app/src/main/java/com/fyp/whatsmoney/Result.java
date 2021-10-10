@@ -23,7 +23,6 @@ public class Result extends AppCompatActivity {
         resultTextView.setText(str);
 
         try {
-            // TODO: IMPLEMENT CNN ON THE BASIS OF BMI
             str = str.split(":")[1];
             str = str.replace(" ", "");
             str = str.split(",")[0];
