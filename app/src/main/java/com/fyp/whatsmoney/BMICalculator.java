@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 public class BMICalculator extends AppCompatActivity {
 
-
     double weight, height;
 
     TextView tvResult;
@@ -47,6 +46,5 @@ public class BMICalculator extends AppCompatActivity {
         Utils.bmi = (weight / height / height) * 10000;
         tvResult.setText(String.valueOf(Utils.bmi));
         iv.animate().alpha(0.8f).rotation(405).setDuration(2000);
-
     }
 }

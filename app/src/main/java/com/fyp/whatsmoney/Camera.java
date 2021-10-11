@@ -72,7 +72,6 @@ public class Camera extends AppCompatActivity {
 //                ivImage.setVisibility(View.VISIBLE);
 //                ivImage.setImageBitmap(bitmap);
 
-
                 final List<Classifier.Recognition> results = classifier.recognizeImage(bitmap);
 
                 Intent produceResult = new Intent(getApplicationContext(), Result.class);

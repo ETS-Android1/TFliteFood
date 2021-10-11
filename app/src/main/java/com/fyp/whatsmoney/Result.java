@@ -27,6 +27,7 @@ public class Result extends AppCompatActivity {
             str = str.replace(" ", "");
             str = str.split(",")[0];
             str = str.replace(")", "");
+
             double calories = Double.parseDouble(str);
             double factor;
             if (Utils.bmi < 18.5) {
@@ -49,11 +50,9 @@ public class Result extends AppCompatActivity {
 
     }
 
-
     @Override
     protected void onPause() {
-        finish();
-        System.exit(0);
+        finishAffinity();
         super.onPause();
     }
 
