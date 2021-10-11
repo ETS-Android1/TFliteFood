@@ -3,4 +3,34 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="colorBlue">#5600eeff</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="colorTransparent">@android:color/transparent</color>
+    <color name="colorHalfWhite">#e0b4b4b4</color>
+    <color name="colorOffWhite">#D6D6D6</color>
+    <color name="black">@android:color/black</color>
+    <color name="red">@android:color/holo_red_dark</color>
+
+    <color xmlns:tools="http://schemas.android.com/tools" name="ucrop_color_toolbar" tools:override="true">
+        @color/colorPrimary
+    </color>
+    <color name="grey">#4D4D4D</color>
+    <color name="pressedColor">#B7B4B4B4</color>
+
+
+    <color name="textBack1">@android:color/white</color>
+    <color name="textBack2">@android:color/transparent</color>
+    <color name="textBack3">@android:color/black</color>
+    <color name="textBack4">@android:color/holo_red_dark</color>
+    <color name="textBack5">@android:color/holo_green_dark</color>
+    <color name="textBack6">@android:color/holo_green_light</color>
+    <color name="textBack7">@android:color/holo_blue_bright</color>
+    <color name="textBack8">@android:color/holo_blue_dark</color>
+    <color name="textBack9">@android:color/holo_blue_dark</color>
+    <color name="yellow">#FFF531</color>
+    <color name="light_black">#222222</color>
+    <color name="white">#FFFFFF</color>
+    <color name="light_gray">#727272</color>
+
 </resources>

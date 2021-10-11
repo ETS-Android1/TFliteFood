@@ -1,13 +1,13 @@
 package com.fyp.whatsmoney;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Result extends AppCompatActivity {
 
     String str;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +41,6 @@ public class Result extends AppCompatActivity {
                 String sug = "Eat healthy - calories equivalent to " + sugItems + " of these food items must be burned to maintain BMI";
                 Suggestion.setText(sug);
             }
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }

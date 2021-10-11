@@ -3,9 +3,11 @@ package com.fyp.whatsmoney;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent Intent = new Intent(getApplicationContext (), BMICalculator.class);
+                Intent Intent = new Intent(getApplicationContext (), Login.class);
                 startActivity(Intent);
                 finish();
             }
